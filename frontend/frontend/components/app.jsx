@@ -2,7 +2,7 @@ import React from 'react';
 
 const App = ({ store }) => (
   <div>
-    <h1>Testing 1 2</h1>
+    <h1>Now its working!</h1>
   </div>
 );
 
