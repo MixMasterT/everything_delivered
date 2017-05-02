@@ -1,0 +1,24 @@
+{
+  "name": "everything_delivered",
+  "version": "1.0.0",
+  "description": "A delivery app for individuals",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MixMasterT/everything_delivered.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MixMasterT/everything_delivered/issues"
+  },
+  "homepage": "https://github.com/MixMasterT/everything_delivered#readme",
+  "dependencies": {
+    "express": "^4.15.2",
+    "mongoose": "^4.9.7"
+  }
+}
