@@ -7,12 +7,12 @@ then
 `
 brew install mongodb
 `
-next from the command line:
+next from the command line in the backend directory:
 
-`mongod --dbpath /Users/YOURNAMEHERE/Documents/everything_delivered/backend/data/db`
+`npm run-script startdb`
 
-This not only starts mongo but also tells mongo where to store data. You'll need to run this every time to start mongo until I smarten up figure out a less annoying solution.
+This is basically short hand for `mongod --dbpath /Users/chesnutt/Documents/everything_delivered/backend/data/db --httpinterface --rest`.
 
 #### 2) Running the server
 
-From the command line run: `node backend/server.js`
+From the command line run: `npm run-script startserver`

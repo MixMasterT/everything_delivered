@@ -3,3 +3,4 @@ frontend/dist/
 
 backend/node_modules
 backend/npm-debug.log
+backend/data/db

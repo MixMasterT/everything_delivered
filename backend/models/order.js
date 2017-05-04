@@ -8,4 +8,4 @@ var orderSchema = new Schema({
     address: {type: String}
 });
 
-module.exports = mongoose.model('Order', orderSchema);
+module.exports = mongoose.model('Test', orderSchema);

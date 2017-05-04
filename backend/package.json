@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "startserver": "node server.js",
+    "seed": "node data/mongoose_seed.js",
+    "startdb": "mongod --dbpath /Users/chesnutt/Documents/everything_delivered/backend/data/db --httpinterface --rest"
   },
   "repository": {
     "type": "git",
@@ -19,6 +21,7 @@
   "homepage": "https://github.com/MixMasterT/everything_delivered#readme",
   "dependencies": {
     "express": "^4.15.2",
-    "mongoose": "^4.9.7"
+    "mongoose": "^4.9.7",
+    "mongoose-seed-db": "0.0.7"
   }
 }
