@@ -20,3 +20,5 @@ plain old CSS. The file-loader and url-loader are also included, which
 should make it possible to encode smaller images as base-64 encoded data
 urls. I have not had much success getting this feature to work yet, but it
 is exciting!
+
+### Test Changes
