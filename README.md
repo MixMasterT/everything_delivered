@@ -88,7 +88,6 @@ This repo is set to have branch protection on the master branch. This means you 
 
 ### React Component Hirearchy
 - NavBar
-- Menu (dropdown menu)
 - List (list wrapper)
 - ListContainer
 - ListItem (items rendered from DB)
@@ -97,21 +96,28 @@ This repo is set to have branch protection on the master branch. This means you 
 - ListDetailContainer
 - OrderForm (checkout form, will add seperate confirmation form if needed)
 - OrderFormContainer
+- Cart
+- CartContainer
 - ? TwilioCheck (if additional component it needed to handle confirmation)
 
 ```JSX
 <NavBar>
-  <Home />
   <List>
   <ListItem /></List>
   <ListDetail />
   <OrderForm />
-  <Checkout />
+  <Cart />
 </NavBar>
 ```
+NavBar renders children => Routes dictate component (List, Detail, Form)
+Route nesting may change with layout IE View Cart From NavBar without changing main content
 
 ### Routes 
-TBD
+| route | component |
+| /     | List  |
+| /:id  | listDetail |
+| /cart | Cart |
+| /checkout | OrderForm |
 
 ### Queries
 We need to gain familiarity with the MongoDB query language. In particular, we need to accomplish these queries:
