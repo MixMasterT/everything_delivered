@@ -1,0 +1,23 @@
+{
+  "name": "everything_delivered",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MixMasterT/everything_delivered.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MixMasterT/everything_delivered/issues"
+  },
+  "homepage": "https://github.com/MixMasterT/everything_delivered#readme",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}
