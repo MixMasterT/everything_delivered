@@ -94,7 +94,7 @@ This repo is set to have branch protection on the master branch. This means you 
 - ListItemContainer
 - ListDetail (to render on item click)
 - ListDetailContainer
-- OrderForm (checkout form, will add seperate confirmation form if needed)
+- OrderForm (checkout form, will add separate confirmation form if needed)
 - OrderFormContainer
 - Cart
 - CartContainer
@@ -112,7 +112,7 @@ This repo is set to have branch protection on the master branch. This means you 
 NavBar renders children => Routes dictate component (List, Detail, Form)
 Route nesting may change with layout IE View Cart From NavBar without changing main content
 
-### Routes 
+### Routes
 | route | component |
 | /     | List  |
 | /:id  | listDetail |
