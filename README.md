@@ -96,9 +96,21 @@ This repo is set to have branch protection on the master branch. This means you 
 - ListDetailContainer
 - OrderForm (checkout form, will add separate confirmation form if needed)
 - OrderFormContainer
+
 - Cart
 - CartContainer
 - ? TwilioCheck (if additional component it needed to handle confirmation)
+
+#### Component State
+| component | state | container |
+| --- | --- | --- |
+| NavBar | `menu: false` Open/Close | no | 
+| List | Product Ids fetched from Container | yes |
+| ListItem | Product POJOs for rendering | yes |
+| ListDetail | Full detail from preloaded, or fetch data | yes |
+| OrderForm | State reflects input fields | no | 
+| Cart | Object with item Ids | yes | 
+
 
 ```JSX
 <NavBar>
@@ -109,15 +121,19 @@ This repo is set to have branch protection on the master branch. This means you 
   <Cart />
 </NavBar>
 ```
+
+*NOTES
 NavBar renders children => Routes dictate component (List, Detail, Form)
 Route nesting may change with layout IE View Cart From NavBar without changing main content
+May need additional component for confirmation and checkout if one component cannot handle all of it 
 
 ### Routes
 | route | component |
-| /     | List  |
-| /:id  | listDetail |
-| /cart | Cart |
-| /checkout | OrderForm |
+| --- | --- |
+| / | NavBar -> List -> ListItem |
+| /:id | NavBar -> ListDetail |
+| /cart | NavBar -> Cart |
+| /checkout | NavBar -> OrderForm |
 
 ### Queries
 We need to gain familiarity with the MongoDB query language. In particular, we need to accomplish these queries:
