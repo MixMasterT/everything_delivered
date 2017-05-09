@@ -1,5 +1,5 @@
 {
-    "model": "Test",
+    "model": "Order",
     "data": [
         { "vendor": "Bismark's Buttercups",
           "recipient": "999-999-9999",
