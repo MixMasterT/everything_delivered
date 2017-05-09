@@ -86,6 +86,14 @@ This repo is set to have branch protection on the master branch. This means you 
 | url | String |
 | imgUrl | String |
 
+6 Verify
+
+| key | Type |
+| --- | --- |
+| _pin | String |
+| _orderId | String |
+
+
 ### React Component Hirearchy
 - NavBar
 - List (list wrapper)
