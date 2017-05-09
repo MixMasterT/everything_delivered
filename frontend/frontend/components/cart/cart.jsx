@@ -9,7 +9,7 @@ class Cart extends React.Component {
     return (
       <div>
         <h2>This is the cart</h2>
-        // your code here...
+        
       </div>
     );
   }
