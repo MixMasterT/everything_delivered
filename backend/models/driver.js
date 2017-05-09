@@ -3,7 +3,7 @@ var mongoose = require('mongoose')
 
 var driverSchema = new Schema({
     _name:  {type: String},
-    _driverId:  {type: String},
+    _driverId:  {type: Schema.Types.ObjectId},
     phoneNumber: {type: String}
 });
 

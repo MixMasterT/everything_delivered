@@ -3,7 +3,7 @@ var mongoose = require('mongoose')
 
 var verifySchema = new Schema({
     _pin:  {type: String, unique: true},
-    _orderId: {type: string},
+    _orderId: {type: Schema.Types.ObjectId, ref: 'Order'}
 });
 
 module.exports = mongoose.model('Verify', verifySchema);
