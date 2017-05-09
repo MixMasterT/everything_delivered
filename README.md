@@ -104,12 +104,12 @@ This repo is set to have branch protection on the master branch. This means you 
 #### Component State
 | component | state | container |
 | --- | --- | --- |
-| NavBar | `menu: false` Open/Close | no | 
+| NavBar | `menu: false` Open/Close | no |
 | List | Product Ids fetched from Container | yes |
 | ListItem | Product POJOs for rendering | yes |
 | ListDetail | Full detail from preloaded, or fetch data | yes |
-| OrderForm | State reflects input fields | no | 
-| Cart | Object with item Ids | yes | 
+| OrderForm | State reflects input fields | no |
+| Cart | Object with item Ids | yes |
 
 
 ```JSX
@@ -125,7 +125,7 @@ This repo is set to have branch protection on the master branch. This means you 
 *NOTES
 NavBar renders children => Routes dictate component (List, Detail, Form)
 Route nesting may change with layout IE View Cart From NavBar without changing main content
-May need additional component for confirmation and checkout if one component cannot handle all of it 
+May need additional component for confirmation and checkout if one component cannot handle all of it
 
 ### Routes
 | route | component |
