@@ -2,8 +2,14 @@ navigation {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   padding: 1em;
   margin: 0 1em;
+
+  .nav-toggle {
+    cursor: pointer;
+    font-size: 2em;
+  }
 
 }
 
@@ -27,7 +33,7 @@ navigation {
 }
 
 .nav a {
-    margin: 1em auto;
+    margin: 2em;
     text-decoration: none;
     display: block;
     transition: 0.3s;
