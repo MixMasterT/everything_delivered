@@ -14,4 +14,5 @@ class List extends React.Component {
       </ul>
     )
   }
+}
 export default List;
