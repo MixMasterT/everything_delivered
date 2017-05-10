@@ -11,8 +11,7 @@ const ListItem = ({ item }) => {
       <h3>{name}</h3>
       <h3>{price}</h3>
     </li>
-
-  )
+  );
   };
 
 export default ListItem;
