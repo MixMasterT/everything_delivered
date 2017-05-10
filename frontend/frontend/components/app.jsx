@@ -16,7 +16,7 @@ const App = ({ store }) => (
       <Route exact path='/' component={ List } />
       <Route path='/cart' component={ Cart } />
       <Route path="/item/:id" component={ ListItem } />
-      <Route path="/mydetails" component={ MyDetails } />
+      <Route path="/my_details" component={ MyDetails } />
       <Route path="/checkout" component={ OrderForm } />
     </div>
   </BrowserRouter>

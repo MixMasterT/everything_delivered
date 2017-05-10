@@ -1,0 +1,63 @@
+navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+  margin: 0 1em;
+
+  .nav-toggle {
+    cursor: pointer;
+    font-size: 2em;
+  }
+
+}
+
+.nav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 5;
+    top: 0;
+    right: 0;
+    color: #888;
+    font-size: 2em;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 2em;
+}
+
+.nav.open-nav {
+  width: 15em;
+}
+
+.nav a {
+    margin: 2em;
+    text-decoration: none;
+    display: block;
+    transition: 0.3s;
+}
+
+.nav a:hover, .offcanvas a:focus{
+    color: red;
+}
+
+.close-ex {
+  position: absolute;
+  top: 0;
+  left: 0.5em;
+  font-size: 1.8em;
+}
+
+.close-ex:hover {
+  color: red;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 450px) {
+  .nav.open-nav {
+    padding-top: 2em;
+    width: 80%;
+  }
+}
