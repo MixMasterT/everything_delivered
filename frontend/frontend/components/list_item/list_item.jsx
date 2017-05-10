@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const ListItem = ({ item }) => {
   let {id, url, name, price} = item;
   return (
-    <li>
+    <li className='list-item'>
       <Link to={`items/${id}`} >
         <img src={url} />
       </Link>
