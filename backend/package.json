@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "startserver": "node server.js",
-    "seed": "node data/mongoose_seed.js",
-    "startdb": "mongod --dbpath /Users/chesnutt/Documents/everything_delivered/backend/data/db --httpinterface --rest"
+    "startdb": "mongo ds133291.mlab.com:33291/order-everything -u mainuser -p qwerty12!",
+    "seedVendor": "mongoimport -h ds133291.mlab.com:33291 -d order-everything -c vendor -u mainuser -p qwerty12! --drop --file ./data/vendorSeed.json"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,5 @@
   "dependencies": {
     "express": "^4.15.2",
     "mongoose": "^4.9.7",
-    "mongoose-seed-db": "0.0.7"
   }
 }
