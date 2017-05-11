@@ -1,0 +1,25 @@
+{
+    "model": "Vendor",
+    "data": [
+        { "_name": "Bismark's Big Buttercups",
+          "url": "https://en.wikipedia.org/wiki/Otto_von_Bismarck",
+          "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Otto_F%C3%BCrst_von_Bismarck.JPG/187px-Otto_F%C3%BCrst_von_Bismarck.JPG"
+          },
+        { "_name": "Skanderbeg's Special Spagetti",
+          "url": "https://en.wikipedia.org/wiki/Skanderbeg",
+          "imgUrl": "https://en.wikipedia.org/wiki/Skanderbeg#/media/File:Gjergj_Kastrioti.jpg"
+          },
+        { "_name": "Rastputin's Rapid Rolls",
+          "url": "https://en.wikipedia.org/wiki/Grigori_Rasputin",
+          "imgUrl": "https://en.wikipedia.org/wiki/Grigori_Rasputin#/media/File:Grigori_Rasputin_1916.jpg"
+        },
+        { "_name": "Mehmed's Mountain of Mangos",
+          "url": "https://en.wikipedia.org/wiki/Mehmed_the_Conqueror",
+          "imgUrl": "https://en.wikipedia.org/wiki/Mehmed_the_Conqueror#/media/File:Gentile_Bellini_003.jpg"
+        },
+        { "_name": "Timur's Terrific Tofu",
+          "url": "https://en.wikipedia.org/wiki/Timur",
+          "imgUrl": "https://en.wikipedia.org/wiki/Timur#/media/File:Tamerlan.jpg"
+        }
+    ]
+}
