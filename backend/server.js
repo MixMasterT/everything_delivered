@@ -1,6 +1,6 @@
 var express = require('express');
 var mongoose = require('mongoose');
-var router = require('./router');
+var router = require('./routes');
 var app = express();
 
 // connect to mongoose when the app initializes
@@ -8,5 +8,8 @@ mongoose.connect('mongodb://mainuser:qwerty12!@ds133291.mlab.com:33291/order-eve
 
 app.use(router);
 
-app.listen(3000);
-console.log("Express server listening on port %d");
+console.log(process.env);
+var port = process.env.PORT || 3000;
+app.listen(3000, function () {
+  console.log('Server is listening on port 3000!')
+})

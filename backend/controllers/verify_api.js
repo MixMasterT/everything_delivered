@@ -11,8 +11,9 @@ var authToken = twilioKeys.test.auth;
 //beginVerify: creates a new entry into verify collection.
 exports.beginVerify = function(req, res) {
   var newPin = Math.random().toString(36).substr(2, 5);
-  var user = User.find({ _id: req.body._uid })
-  if(user){
+  User.find({ _id: req.body._uid }, function(err, user) {
+    if(err) return handleError(err);
+
     new Verify({
       _pin: newPin,
       _orderId: req.body._id
@@ -26,10 +27,7 @@ exports.beginVerify = function(req, res) {
       to: `${user.phoneNumber}`,
       from: `${twilioKeys.number}`
     }).then((message) => console.log(message));
-  } else {
-    //send error
-    res.send()
-  }
+  })
 };
 
 //endVerify: checks to see if pin entered matches pin in db. If so, it removes data and fires off order to delivery man.
