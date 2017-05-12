@@ -4,7 +4,7 @@ import {
   REMOVE_ITEM,
   SET_QUANTITY } from "../actions/cart_actions.js";
 
-let _defaultState = {};
+let _defaultState = [];
 
 const cartReducer = (state = _defaultState, action) => {
   Object.freeze(state);
