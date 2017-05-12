@@ -7,10 +7,11 @@ var userSchema = new Schema({
     name: {type: String},
     address: {type: String},
     loc: {
-      type: "Point",
+      type: {type: String},
       coordinates: [Number],  // [<longitude>, <latitude>]
-      index: '2dsphere'
-    }
+    },
 });
 
-module.exports = mongoose.model('User', orderSchema);
+userSchema.index({loc: '2dsphere'});
+
+module.exports = mongoose.model('User', userSchema);
