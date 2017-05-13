@@ -1,21 +1,15 @@
 var express = require('express');
 var mongoose = require('mongoose');
+var router = require('./routes');
 var app = express();
 
 // connect to mongoose when the app initializes
 mongoose.connect('mongodb://mainuser:qwerty12!@ds133291.mlab.com:33291/order-everything');
 
+app.use(router);
 
-// set up the RESTful API, handler methods are defined in type_api.js
-var orderApi = require('./controllers/orders_api.js');
-var itemApi = require('./controllers/item_api.js');
-
-app.post('/orders', orderApi.post);
-app.get('/orders/:user ', orderApi.showByUser);
-app.get('/orders/:driver ', orderApi.showByDriver);
-app.get('/orders', orderApi.list);
-app.get('/items', itemApi.list)
-
-
-app.listen(3000);
-console.log("Express server listening on port %d");
+console.log(process.env);
+var port = process.env.PORT || 3000;
+app.listen(3000, function () {
+  console.log('Server is listening on port 3000!')
+})
