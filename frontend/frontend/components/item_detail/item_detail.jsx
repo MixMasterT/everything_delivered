@@ -6,6 +6,6 @@ const ItemDetail = (props) =>  (
     <h2>{props.item.name}</h2>
     <h2>{props.item.price}</h2>
   </section>
-  )
+);
 
 export default ItemDetail;
