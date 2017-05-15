@@ -8,12 +8,15 @@ class Cart extends React.Component {
 
   renderItems() {
     return (
-      <ul className="cart-items">
+      <ul className="cart-list">
         {this.state.items.map((item, i) =>
-          <section key={i}>
+          <section key={i} className="cart-item">
           <li>{item.name}</li>
           <li>{item.price}</li>
-          <li><strong> + </strong><strong> - </strong></li>
+          <section className="change-quantity">
+            <span id="remove-item"> + </span>
+            <span id="add-item"> - </span>
+          </section>
           </section>
       )}
       </ul>
