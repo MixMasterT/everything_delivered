@@ -1,8 +1,8 @@
 import { merge } from 'lodash';
 import {
           CLEAR_MESSAGES,
-          ADD_MESSAGE 
-        } from "../actions/messages_actions.js";
+          ADD_MESSAGE
+        } from "../actions/message_actions.js";
 
 let _defaultState = [];
 
@@ -11,9 +11,9 @@ const messagesReducer = (state = _defaultState, action) => {
 
   switch(action.type) {
     case CLEAR_MESSAGES:
-      // your code here
+      return [];
     case ADD_MESSAGE:
-      // your code here
+      return [...state, action.message];
     default:
       return state;
   }
