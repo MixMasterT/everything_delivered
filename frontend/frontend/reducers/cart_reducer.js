@@ -2,7 +2,8 @@ import { merge } from 'lodash';
 import {
   ADD_ITEM,
   REMOVE_ITEM,
-  SET_QUANTITY } from "../actions/cart_actions.js";
+  SET_QUANTITY,
+  VERIFY_ORDER } from "../actions/cart_actions.js";
 
 let _defaultState = {};
 
@@ -37,6 +38,10 @@ const cartReducer = (state = _defaultState, action) => {
         newState[action.itemId] = newQuantity;
       }
       localStorage.setItem('cart', JSON.stringify(newState));
+      return newState;
+
+    case VERIFY_ORDER:
+      newState.verified = action.verfied;
       return newState;
 
     default:
