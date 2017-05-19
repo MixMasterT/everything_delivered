@@ -5,6 +5,7 @@ import {
   SET_QUANTITY } from "../actions/cart_actions.js";
 
 let _defaultState = {};
+// state will hold object where keys are itemId and value is number of item.
 
 // cart will be an object with itemId as key and quantity as value
 
@@ -17,6 +18,8 @@ const cartReducer = (state = _defaultState, action) => {
     case ADD_ITEM:
       if (newState[action.item.id]) {
         newState[action.item.id]++;
+      } else {
+        newState[action.item.id] = 1;
       }
       localStorage.setItem('cart', JSON.stringify(newState));
       return newState;
@@ -34,7 +37,7 @@ const cartReducer = (state = _defaultState, action) => {
 
     case SET_QUANTITY:
       if (newState[action.itemId]) {
-        newState[action.itemId] = newQuantity;
+        newState[action.itemId] = action.newQuantity;
       }
       localStorage.setItem('cart', JSON.stringify(newState));
       return newState;
