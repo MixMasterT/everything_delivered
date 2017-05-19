@@ -1,12 +1,12 @@
 var Verify = require('../models/verify.js');
 var User = require('../models/user.js');
 var twilio = require('twilio');
-var twilioKeys = require('../config.js')
+// var twilioKeys = require('../config.js')
 
 
 //test keys direct to twilio test api and not real one.
-var accountSid = twilioKeys.test.sid;
-var authToken = twilioKeys.test.auth;
+// var accountSid = twilioKeys.test.sid;
+// var authToken = twilioKeys.test.auth;
 
 //beginVerify: creates a new entry into verify collection.
 exports.beginVerify = function(req, res) {
