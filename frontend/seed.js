@@ -56,6 +56,7 @@ function genItems(amt, vendors) {
 
 //declare how many Vendors to generate
 var vens = genVendor(50);
+//declare how many items to generate
 var itms = genItems(vens.length, vens);
 
 
