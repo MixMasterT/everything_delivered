@@ -2,7 +2,7 @@ export const fetchAllItems = () => {
   return new Promise((resolve, reject) => {
     var request = new XMLHttpRequest();
 
-    request.open('GET', 'https://testproject-api.strv.com/events');
+    request.open('GET', 'https://localhost:3000/');
 
     request.onreadystatechange = function () {
       if (this.readyState === 4) {
@@ -31,7 +31,7 @@ export const fetchSingleItem = (itemId) => {
   return new Promise((resolve, reject) => {
     var request = new XMLHttpRequest();
 
-    request.open('GET', `https://testproject-api.strv.com/events/${itemId}`);
+    request.open('GET', `https://localhost:3000/${itemId}`);
 
     request.onreadystatechange = function () {
       if (this.readyState === 4) {
