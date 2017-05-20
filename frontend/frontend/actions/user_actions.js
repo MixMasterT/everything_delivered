@@ -3,7 +3,7 @@ export const SET_ADDRESS = 'SET_ADDRESS';
 export const SET_NAME = 'SET_NAME';
 export const SET_PHONE = 'SET_PHONE';
 
-export const recieveUser = user => ({
+export const receiveUser = user => ({
   type: RECEIVE_USER,
   user,
 });
