@@ -1,108 +1,72 @@
-var Verify = require('../models/verify.js');
-var User = require('../models/user.js');
-var twilio = require('twilio');
-var twilioKeys = require('../config.js')
+const Verify = require('../models/verify.js');
+const User = require('../models/user.js');
+const twilio = require('twilio');
+const keys = require('../config.js')
+const phoneReg = require('../lib/phone_verification')(keys.authyKey);
 
 
-//test keys direct to twilio test api and not real one.
-var accountSid = twilioKeys.test.sid;
-var authToken = twilioKeys.test.auth;
+//test keys direct to twili test api and not real one.
+const accountSid = keys.accountSid;
+const authToken = keys.authToken;
 
-exports.verify = function(request, response) {
-    let user = {};
 
-    // Load user model
-    User.findById(request.params.id, function(err, doc) {
-        if (err || !doc) {
-            return die('User not found for this ID.');
-        }
+/**
+ * Register a phone
+ *
+ * @param req
+ * @param res
+ */
+exports.requestPhoneVerification = function (req, res) {
+    var phone_number = req.body.phone_number;
+    var country_code = req.body.country_code;
+    var via = req.body.via;
 
-        // If we find the user, let's validate the token they entered
-        user = doc;
-        user.verifyAuthyToken(request.body.code, postVerify);
-    });
+    console.log("body: ", req.body);
 
-    // Handle verification response
-    function postVerify(err) {
-        if (err) {
-            return die('The token you entered was invalid - please retry.');
-        }
-
-        // If the token was valid, flip the bit to validate the user account
-        user.verified = true;
-        user.save(postSave);
-    }
-
-    // after we save the user, handle sending a confirmation
-    function postSave(err) {
-        if (err) {
-            return die('There was a problem validating your account '
-                + '- please enter your token again, and panic!!');
-        }
-
-        // Send confirmation text message
-        const message = 'You did it! Signup complete :)';
-        user.sendMessage(message, function() {
-          // show success page
-          request.flash('successes', message);
-          response.redirect(`/users/${user._id}`);
-        }, function(err) {
-          request.flash('errors', 'You are signed up, but '
-              + 'we could not send you a message. Our bad :(');
+    if (phone_number && country_code && via) {
+        phoneReg.requestPhoneVerification(phone_number, country_code, via, function (err, response) {
+            if (err) {
+                console.log('error creating phone reg request', err);
+                res.status(500).json(err);
+            } else {
+                console.log('Success register phone API call: ', response);
+                res.status(200).json(response);
+            }
         });
+    } else {
+        console.log('Failed in Register Phone API Call', req.body);
+        res.status(500).json({error: "Missing fields"});
     }
 
-    // respond with an error
-    function die(message) {
-        request.flash('errors', message);
-        response.redirect('/users/'+request.params.id+'/verify');
-    }
 };
 
-exports.resend = function(request, response) {
-    // Load user model
-    User.findById(request.params.id, function(err, user) {
-        if (err || !user) {
-            return die('User not found for this ID.');
-        }
+/**
+ * Confirm a phone registration token
+ *
+ * @param req
+ * @param res
+ */
+exports.verifyPhoneToken = function (req, res) {
+    var country_code = req.body.country_code;
+    var phone_number = req.body.phone_number;
+    var token = req.body.token;
 
-        // If we find the user, let's send them a new code
-        user.sendAuthyToken(postSend);
-    });
+    if (phone_number && country_code && token) {
+        phoneReg.verifyPhoneToken(phone_number, country_code, token, function (err, response) {
+            if (err) {
+                console.log('error creating phone reg request', err);
+                res.status(500).json(err);
+            } else {
+                console.log('Confirm phone success confirming code: ', response);
+                if (response.success) {
+                    req.session.ph_verified = true;
+                }
+                res.status(200).json(err);
+            }
 
-    // Handle send code response
-    function postSend(err) {
-        if (err) {
-            return die('There was a problem sending you the code - please '
-                + 'retry.');
-        }
-
-        request.flash('successes', 'Code re-sent!');
-        response.redirect('/users/'+request.params.id+'/verify');
-    }
-
-    // respond with an error
-    function die(message) {
-        request.flash('errors', message);
-        response.redirect('/users/'+request.params.id+'/verify');
-    }
-};
-
-exports.showUser = function(request, response, next) {
-    // Load user model
-    User.findById(request.params.id, function(err, user) {
-        if (err || !user) {
-            // 404
-            return next();
-        }
-
-        response.render('users/show', {
-            title: 'Hi there ' + user.name + '!',
-            user: user,
-            // any errors
-            errors: request.flash('errors'),
-            // any success messages
-            successes: request.flash('successes'),
         });
-    });
+    } else {
+        console.log('Failed in Confirm Phone request body: ', req.body);
+        res.status(500).json({error: "Missing fields"});
+    }
 };
