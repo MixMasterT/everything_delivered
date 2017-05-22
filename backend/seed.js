@@ -1,4 +1,20 @@
-fs = require('fs')
+const fs = require('fs');
+const mongoose = require('mongoose');
+const config = require('./config.js');
+const Item = require('./models/item.js');
+const Vendor = require('./models/vendor.js');
+
+mongoose.connect('mongodb://localhost/test', err => {
+  if (err) { throw err }
+});
+
+const db = mongoose.connection;
+//reset collections
+db.once('open', () => {
+  Vendor.remove({}, (err) => console.log('vendors reset'));
+  Item.remove({}, (err) => console.log('items reset'))
+});
+
 
 function genVendor(amt) {
   var totalCompanies = [];
@@ -20,16 +36,14 @@ function genVendor(amt) {
     suffix[Math.floor(Math.random() * suffix.length)];
     let website = "http://www." + company.replace(/\s+/, '') + webs[Math.floor(Math.random() * webs.length)];
     let img = "http://www.google.com";
-    let current = { _name: company,
-      _vendorId: i, url: website, imgUrl: img }
+    let current = { _name: company, url: website, imgUrl: img }
     totalCompanies.push(current);
   }
   return totalCompanies;
 }
 
-function genItems(amt, vendors) {
+function genItems(amt, vIds, complete) {
   var totalItems = [];
-  vendors = vendors.map(v => v._vendorId);
   var itemPrefix = `Red Green Blue Yellow Orange Magenta Pink Purple Maroon Black White
   Tan Sandy EggWhite Tortilla Big Huge Small Tiny Medium Itsy Grey Soft 8-Pack 12-Pack 4-Pack
   20-pack 30-pack Top Quality NameBrand TopBrand Delicious Lovely Greatest Scrumptious Family-Size
@@ -43,23 +57,41 @@ function genItems(amt, vendors) {
     let item = {
       name: currentName,
       _userId: i,
-      _vid: vendors[Math.floor(Math.random() * vendors.length)],
-      _itemId: i,
+      _vid: vIds[Math.floor(Math.random() * vIds.length)],
       _price: (Math.random() * 100).toFixed(2),
       imgUrl: 'www.' + currentName.slice(0, 5).replace(/\s+/, '') + '.imgur.com'
     }
     totalItems.push(item);
   }
-
+  complete(totalItems);
   return totalItems;
 }
-
 //declare how many Vendors to generate
-var vens = genVendor(50);
-//declare how many items to generate
-var itms = genItems(vens.length, vens);
+var vendors = genVendor(50);
+var vendorIds = [];
+//create vendors in database
+vendors.forEach(v => {
+  Vendor.create(v, (err) => {
+    if (err) { throw err }
+  }).then((obj) => {
+    vendorIds.push(obj._id)
+  });
+});
+
+//callback to pass to generateItems function
+function writeItems(itms) {
+  itms.forEach(itm => {
+    Item.create(itm, (err) => {
+      if (err) { throw err }
+    })
+  });
+}
+
+//pass callback to write after items are generated with correct vId
+var itms = genItems(vendors.length, vendorIds, writeItems);
 
 
+//call to generate JSON file if needed
 function generateJSON(filename){
   var stream = fs.createWriteStream(filename);
   stream.once('open', () => {
@@ -67,10 +99,9 @@ function generateJSON(filename){
     vens.forEach(v => stream.write(JSON.stringify(v) + "," + "\n"));
     stream.write("]\n")
     stream.write("items: [")
-    itms.forEach(i => stream.write(JSON.stringify(i) + "," + "\n"));
+    items.forEach(i => stream.write(JSON.stringify(i) + "," + "\n"));
     stream.write("]\n")
     stream.end();
   });
 }
-//generate whatever file you want
-generateJSON("seedFile.json")
+// generateJSON("seedFile.json")
