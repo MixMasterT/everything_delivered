@@ -5,7 +5,7 @@ import NavBar from './nav_bar/nav_bar_container';
 import List from './list/list_container';
 import Cart from './cart/cart_container';
 import ItemDetail from './item_detail/item_detail_container';
-import UserForm from './user_form/user_form_container';
+import MyDetails from './my_details/my_details_container';
 import OrderForm from './order_form/order_form_container';
 import styles from '../styles/main.scss';
 
