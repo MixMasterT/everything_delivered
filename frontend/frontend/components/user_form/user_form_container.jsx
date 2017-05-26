@@ -3,7 +3,7 @@ import UserForm from './user_form.jsx';
 import {receiveUser, setAddress, setName, setPhone } from '../../actions/user_actions';
 
 const mapStateToProps = (state, ownProps) => ({
-  // your code here...
+  user: state.user,
 });
 
 const mapDispatchToProps = dispatch => ({
