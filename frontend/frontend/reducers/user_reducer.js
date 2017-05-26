@@ -18,6 +18,8 @@ const userReducer = (state = _defaultState, action) => {
   switch(action.type) {
 
     case RECEIVE_USER:
+      console.log('recieve user handles in Reducer');
+      console.log(action.user);
       localStorage.setItem('user', JSON.stringify(action.user));
       return action.user;
 
@@ -35,7 +37,7 @@ const userReducer = (state = _defaultState, action) => {
       newState['phone'] = action.phone;
       localStorage.setItem('user', JSON.stringify(newState));
       return newState;
-      
+
     default:
       return state;
   }

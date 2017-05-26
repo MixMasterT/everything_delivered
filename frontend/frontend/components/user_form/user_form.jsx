@@ -1,14 +1,16 @@
 import React from 'react';
 
+import merge from 'lodash/merge';
+
 class UserForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
+    this.state = merge({
       address: "",
       name: "",
       phone: "",
-    }
+    }, this.props.user);
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
