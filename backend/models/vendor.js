@@ -8,4 +8,4 @@ var vendorSchema = new Schema({
     imgUrl: {type: String}
 });
 
-module.exports = mongoose.model('Item', vendorSchema);
+module.exports = mongoose.model('Vendor', vendorSchema);

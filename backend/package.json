@@ -20,8 +20,11 @@
   },
   "homepage": "https://github.com/MixMasterT/everything_delivered#readme",
   "dependencies": {
+    "authy": "^1.2.0",
+    "body-parser": "^1.17.2",
     "express": "^4.15.2",
     "mongoose": "^4.9.7",
+    "request": "^2.81.0",
     "twilio": "^3.0.0"
   }
 }
