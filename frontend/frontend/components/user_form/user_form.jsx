@@ -18,15 +18,17 @@ class UserForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-
-    console.log('handle submit fired');
-    console.log('state: ', this.state);
     // verify phone number, send error if not valid
-
+    if (this.state.phone === '') {
+      this.props.addMessage("Phone number can't be blank.")
+    } else if (!this.state.phone.match(/^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/)) {
+      this.props.addMessage('Phone number format invalid.');
+    } else {
+      this.props.receiveUser(this.state);
+    }
     // verify address, send error if not valid
 
     // set user
-    this.props.receiveUser(this.state);
   }
 
   handleChange(field) {
