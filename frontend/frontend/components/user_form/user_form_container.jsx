@@ -4,7 +4,6 @@ import {receiveUser, setAddress, setName, setPhone } from '../../actions/user_ac
 
 const mapStateToProps = (state, ownProps) => ({
   // your code here...
-
 });
 
 const mapDispatchToProps = dispatch => ({
