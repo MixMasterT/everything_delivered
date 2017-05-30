@@ -1,7 +1,10 @@
 var Verify = require('../models/verify.js');
 var User = require('../models/user.js');
 var twilio = require('twilio');
+<<<<<<< HEAD
+=======
 
+>>>>>>> 1578c3b0072986839e510bb227df04284ed6f79b
 // var twilioKeys = require('../config.js')
 
 
