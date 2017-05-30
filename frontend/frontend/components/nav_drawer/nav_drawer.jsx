@@ -19,7 +19,7 @@ const NavDrawer = ({ navIsOpen, closeNav }) => {
         <li onClick={closeNav}><Link to='cart'>Cart</Link></li>
         <li onClick={closeNav}><Link to='checkout'>Checkout</Link></li>
       </ul>
-      
+
     </div>
   )
 }

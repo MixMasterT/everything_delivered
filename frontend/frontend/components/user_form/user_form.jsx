@@ -32,9 +32,9 @@ class UserForm extends React.Component {
     return (
       <div className="user-form">
         <form onSubmit={ handleSubmit }>
-          <input type='text' onChange={handleChange('name')} />
-          <input type='text' onChange={handleChange('address')} />
-          <input type='text' onChange={handleChange('phone')} />
+          <input type='text' onChange={handleChange('name')} placeholder="Name"/>
+          <input type='text' onChange={handleChange('address')} placeholder="Address" />
+          <input type='text' onChange={handleChange('phone')} placeholder="Phone Number"/>
           <input type='submit' value='save' />
         </form>
       </div>
