@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const config = require('./config.js');
 const Item = require('./models/item.js');
 const Vendor = require('./models/vendor.js');
+mongoose.Promise = global.Promise;
 
 mongoose.connect('mongodb://localhost/test', err => {
   if (err) { throw err }
@@ -16,7 +17,7 @@ db.once('open', () => {
 });
 
 
-function genVendor(amt) {
+function genVendor(amt, cb) {
   var totalCompanies = [];
   var names = `Tim's K-Shop Tommy's Jimbo's GreenCA Lantern GreenCross Dynamo UtilsX JPrint
   PizzaShop WalShop S-MART Starbricks Subwizzle SammyJe John's Albert's Asut Filer Xavier
@@ -39,6 +40,7 @@ function genVendor(amt) {
     let current = { _name: company, url: website, imgUrl: img }
     totalCompanies.push(current);
   }
+  cb(totalCompanies);
   return totalCompanies;
 }
 
@@ -67,16 +69,20 @@ function genItems(amt, vIds, complete) {
   return totalItems;
 }
 //declare how many Vendors to generate
-var vendors = genVendor(50);
-var vendorIds = [];
-//create vendors in database
-vendors.forEach(v => {
-  Vendor.create(v, (err) => {
-    if (err) { throw err }
-  }).then((obj) => {
-    vendorIds.push(obj._id)
-  });
-});
+var vendors = genVendor(50, writeVendors);
+//callback to create DB instances upon generation
+function writeVendors(vendors) {
+  var vendorIds = [];
+  vendors.forEach(v => {
+    Vendor.create(v, (err) => {
+      if (err) { throw err }
+    }).then((obj) => {
+      vendorIds.push(obj._id)
+    });
+  })
+  itms = genItems(vendors.length, vendorIds, writeItems);
+  generateJSON("seedFile2.json");
+}
 
 //callback to pass to generateItems function
 function writeItems(itms) {
@@ -84,11 +90,8 @@ function writeItems(itms) {
     Item.create(itm, (err) => {
       if (err) { throw err }
     })
-  });
+  })
 }
-
-//pass callback to write after items are generated with correct vId
-var itms = genItems(vendors.length, vendorIds, writeItems);
 
 
 //call to generate JSON file if needed
@@ -96,12 +99,11 @@ function generateJSON(filename){
   var stream = fs.createWriteStream(filename);
   stream.once('open', () => {
     stream.write("vendors: [")
-    vens.forEach(v => stream.write(JSON.stringify(v) + "," + "\n"));
+    vendors.forEach(v => stream.write(JSON.stringify(v) + "," + "\n"));
     stream.write("]\n")
     stream.write("items: [")
-    items.forEach(i => stream.write(JSON.stringify(i) + "," + "\n"));
+    itms.forEach(i => stream.write(JSON.stringify(i) + "," + "\n"));
     stream.write("]\n")
     stream.end();
   });
 }
-// generateJSON("seedFile.json")
