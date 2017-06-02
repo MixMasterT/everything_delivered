@@ -1,8 +1,7 @@
-frontend/node_modules/
 frontend/dist/
 
-backend/node_modules
-backend/npm-debug.log
-backend/data/db
-backend/config.js
-backend/notes.md
+node_modules
+npm-debug.log
+data/db
+config.js
+notes.md

@@ -1,0 +1,55 @@
+{
+  "name": "EverythingDelivered",
+  "version": "1.0.0",
+  "description": "Abstract Delivery Service",
+  "main": "server.js",
+  "author": "MixMasterT",
+  "license": "MIT",
+  "dependencies": {
+    "css-loader": "^0.28.0",
+    "file-loader": "^0.11.1",
+    "input-moment": "^0.3.2",
+    "moment": "^2.18.1",
+    "node-sass": "^4.5.2",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-redux": "^5.0.4",
+    "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
+    "sass-loader": "^6.0.3",
+    "style-loader": "^0.16.1",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.4.1",
+    "authy": "^1.2.0",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.2",
+    "mongoose": "^4.9.7",
+    "morgan": "^1.8.2",
+    "request": "^2.81.0",
+    "twilio": "^3.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^6.4.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "webpack-dev-server": "^2.4.2"
+  },
+  "bugs": {
+    "url": "https://github.com/MixMasterT/everything_delivered/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MixMasterT/everything_delivered.git"
+  },
+  "homepage": "https://github.com/MixMasterT/everything_delivered#readme",
+  "scripts": {
+    "start": "webpack-dev-server --env development --hot  --inline --history-api-fallback",
+    "build": "webpack --env production",
+    "startserver": "node server.js",
+    "startdb": "mongo ds133291.mlab.com:33291/order-everything -u mainuser -p qwerty12!",
+    "seedVendor": "mongoimport -h ds133291.mlab.com:33291 -d order-everything -c vendor -u mainuser -p qwerty12! --drop --file ./data/vendorSeed.json"
+  }
+}

@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import TextConfirmation from './text_confirmation.jsx';
+import TextConfirmation from './text_confirmation';
+import { requestToken } from '../../util/text_confirmation_util'
 
 const mapStateToProps = (state, ownProps) => ({
+  requestToken: (phoneNumber) => requestToken(phoneNumber)
   // your code here...
 });
 

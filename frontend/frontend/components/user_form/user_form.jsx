@@ -1,6 +1,6 @@
 import React from 'react';
 
-import merge from 'lodash/merge';
+import {merge} from 'lodash';
 
 class UserForm extends React.Component {
   constructor(props) {
