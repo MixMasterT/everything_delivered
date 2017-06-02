@@ -7,13 +7,13 @@ var itemsApi = require('./controllers/items_api.js');
 var usersApi = require('./controllers/users_api.js');
 
 
-// router.post('/orders', orderApi.post);
-// router.get('/orders/:user ', orderApi.showByUser);
-// router.get('/orders/:driver ', orderApi.showByDriver);
-// router.get('/orders', orderApi.list);
+router.get('/.*request$/', usersApi.requestPhoneVerification);
+router.get('/.*verify$/', usersApi.verifyPhoneVerification);
 
-router.get('/', itemApi.listAll);
-router.get('/:_id', itemApi.listOne);
-router.post('/checkout', verifyApi.beginVerify)
+router.get('/', itemsApi.listAll);
+router.post('/', itemsApi.newItem);
+// router.put('/', itemsApi.updateItem);
+router.get('/:itemId', itemsApi.listOne);
+
 
 module.exports = router;
