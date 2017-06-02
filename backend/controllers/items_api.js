@@ -20,7 +20,7 @@ exports.listAll = function(req, res) {
       console.log(err);
       throw err;
     } else {
-      res.send(items);
+      res.send(console.log("yaa"));
     }
   });
 }
