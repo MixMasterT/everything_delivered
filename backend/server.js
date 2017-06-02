@@ -11,9 +11,7 @@ mongoose.connect('mongodb://mainuser:qwerty12!@ds133291.mlab.com:33291/order-eve
 mongoose.Promise = Promise;
 
 // Parse incoming form-encoded HTTP bodies
-app.use(bodyParser.urlencoded({
-    extended: true,
-}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(morgan('combined'));
 
