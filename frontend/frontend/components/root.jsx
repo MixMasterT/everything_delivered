@@ -3,10 +3,12 @@ import { Provider } from 'react-redux';
 
 import App from './app.jsx';
 
-const Root = ({ store }) => (
-  <Provider store={ store }>
+const Root = ({ store }) => {
+  window.store = store
+  //TODO When frontend done, remove store from window
+return (<Provider store={ store }>
     <App />
-  </Provider>
-);
+  </Provider>)
+}
 
 export default Root;
