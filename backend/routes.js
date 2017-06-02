@@ -8,7 +8,7 @@ var usersApi = require('./controllers/users_api.js');
 
 
 router.get('/.*request$/', usersApi.requestPhoneVerification);
-router.get('/.*verify$/', usersApi.verifyPhoneVerification);
+router.get('/.*verify$/', usersApi.verifyPhoneToken);
 
 router.get('/', itemsApi.listAll);
 router.post('/', itemsApi.newItem);

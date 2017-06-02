@@ -12,7 +12,7 @@ exports.newItem = function(req, res) {
   //add error handling with .catch
 }
 
-exports.updateItem
+// exports.updateItem
 
 exports.listAll = function(req, res) {
   Item.find(function(err, items) {
