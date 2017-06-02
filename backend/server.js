@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const router = require('./routes');
 const config = require('./config');
+const morgan = require('morgan');
 const app = express();
 
 // connect to mongoose when the app initializes
@@ -13,6 +14,8 @@ mongoose.Promise = Promise;
 app.use(bodyParser.urlencoded({
     extended: true,
 }));
+
+app.use(morgan('combined'));
 
 // Configure application routes
 app.use(router);
