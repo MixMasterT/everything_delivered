@@ -1,8 +1,7 @@
 var Item = require('../models/item.js');
 var Vendor = require('../models/vendor.js');
-// returns all items (sold or unsold)
 
-exports.post = function(req, res) {
+exports.newItem = function(req, res) {
   new Item({
     _vid: req.body._vid,
     _name: req.body._name,
@@ -12,6 +11,8 @@ exports.post = function(req, res) {
   }).save();
   //add error handling with .catch
 }
+
+exports.updateItem
 
 exports.listAll = function(req, res) {
   Item.find(function(err, items) {
