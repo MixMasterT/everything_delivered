@@ -19,7 +19,7 @@ class TextConfirmation extends React.Component {
 
   handleSubmit(e){
     e.preventDefault();
-    alert(this.state.phone);
+    this.props.requestToken(this.state.phone)
   }
 
   render() {

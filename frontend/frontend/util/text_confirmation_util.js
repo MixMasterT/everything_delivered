@@ -3,9 +3,10 @@ const baseUrl = 'https://localhost:3000/';
 export const requestToken = (phoneNumber) => {
   return new Promise((resolve, reject) => {
     var request = new XMLHttpRequest();
-    var params = `phone=${phoneNumber}`;
-    console.log('params', params);
-    request.open('GET', `${baseUrl}/request`);
+    var params = JSON.stringify({ phone: phoneNumber });
+    console.log(params);
+    request.open('GET', `${baseUrl}request`);
+    request.setRequestHeader('Content-length', params.length)
 
     request.onreadystatechange = function () {
       if (this.readyState === 4) {
