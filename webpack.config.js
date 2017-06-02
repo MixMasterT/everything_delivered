@@ -4,9 +4,9 @@ module.exports = {
   context: __dirname,
   entry: "./frontend/frontend/everything_delivered.jsx",
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, '/frontend/dist'),
     filename: "bundle.js",
-    publicPath: path.join(__dirname, 'dist'),
+    publicPath: path.join(__dirname, '/frontend/dist'),
   },
   module: {
     loaders: [
