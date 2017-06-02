@@ -2,14 +2,6 @@ var Item = require('../models/item.js');
 var Vendor = require('../models/vendor.js');
 // returns all items (sold or unsold)
 
-// var itemSchema = new Schema({
-//     _name:  {type: String},
-//     _itemId: {type: Schema.Types.ObjectId},
-//     _vid: {type: String, ref: 'Vendor'},
-//     imgUrl: {type: String},
-//     price: {type: Number}
-// });
-
 exports.post = function(req, res) {
   new Item({
     _vid: req.body._vid,
@@ -18,17 +10,28 @@ exports.post = function(req, res) {
     imgUrl: req.body.imgUrl,
     price: req.body.price
   }).save();
+  //add error handling with .catch
 }
 
 exports.listAll = function(req, res) {
   Item.find(function(err, items) {
-    res.send(items);
+    if (err) {
+      console.log(err);
+      throw err;
+    } else {
+      res.send(items);
+    }
   });
 }
 
 exports.listOne = function(req, res) {
   Item.find({_id: req.params._id}, function(err, item) {
-    res.send(item);
+    if (err) {
+      console.log(err);
+      throw err;
+    } else {
+      res.send(item);
+    }
   });
 }
 //find Vendor that corresponds to item
@@ -37,7 +40,12 @@ exports.listVendor = function(req, res) {
   if (foundItem) {
     //find or findById ?
     Vendor.find({_vid: foundItem._id }, function(err, ven) {
-      res.send(ven);
-    })
+      if (err) {
+        console.log(err);
+        throw err;
+      } else {
+        res.send(ven);
+      }
+    });
   }
 }

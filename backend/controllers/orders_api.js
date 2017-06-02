@@ -23,20 +23,35 @@ exports.post = function(req, res) {
 // returns all orders
 exports.list = function(req, res) {
   Orders.find(function(err, orders) {
-    res.send(orders);
+    if (err) {
+      console.log(err);
+      throw err;
+    } else {
+      res.send(orders);
+    }
   });
 }
 
 // returns all orders made by a user
 exports.showByUser = function(req, res) {
-  Orders.findById({_uId: req.params._uId}, function(error, orders) {
-    res.send(orders);
+  Orders.findById({_uId: req.params._uId}, function(err, orders) {
+    if (err) {
+      console.log(err);
+      throw err;
+    } else {
+      res.send(orders);
+    }
   });
 };
 
 // returns all orders made by a driver (open and completed)
 exports.showByDriver = function(req, res) {
-  Orders.findById({_dId: req.params._dId}, function(error, orders) {
-    res.send(orders);
+  Orders.findById({_dId: req.params._dId}, function(err, orders) {
+    if (err) {
+      console.log(err);
+      throw err;
+    } else {
+      res.send(orders);
+    }
   });
 };
