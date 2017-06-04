@@ -19,8 +19,8 @@ const authToken = keys.authToken;
 exports.requestPhoneVerification = function (req, res) {
     var phone_number = req.body.phone_number;
     var country_code = req.body.country_code;
-    var via = req.body.via;
-
+    var via = 'sms';
+    console.log(req);
     console.log("body: ", req.body);
 
     if (phone_number && country_code && via) {

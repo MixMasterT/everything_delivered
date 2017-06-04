@@ -1,14 +1,14 @@
 const baseUrl = 'http://localhost:3000/';
 
-// export const requestToken = (phoneNumber) => {
-//   $.ajax({
-//     method: 'GET',
-//     url: 'https://localhost:3000/request',
-//     data: { phone_number: phoneNumber, country_code: "+1" },
-//     success: (res) => console.log(res),
-//     error: (res) => console.log(res)
-//   })
-// }
+export const requestToken = (phoneNumber) => {
+  $.ajax({
+    method: 'POST',
+    url: '/request',
+    data: { phone_number: phoneNumber, country_code: "+1" },
+    success: (res) => console.log(res),
+    error: (res) => console.log(res)
+  })
+}
 // export const requestToken = (phoneNumber) => {
 //   return new Promise((resolve, reject) => {
 //     var request = new XMLHttpRequest();
