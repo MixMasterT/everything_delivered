@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const router = require('./routes');
 const config = require('./config');
-const morgan = require('morgan');
+const logger = require('morgan');
 const app = express();
 
 // connect to mongoose when the app initializes
@@ -11,9 +11,13 @@ mongoose.connect('mongodb://mainuser:qwerty12!@ds133291.mlab.com:33291/order-eve
 mongoose.Promise = Promise;
 
 // Parse incoming form-encoded HTTP bodies
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(morgan('combined'));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
+// Apply HTTP request logger
+app.use(logger('combined'));
+
+// Direct app to serve frontend
 app.use(express.static(__dirname + '/frontend'))
 
 // Configure application routes
@@ -22,5 +26,5 @@ app.use(router);
 console.log(process.env);
 const port = process.env.PORT || 3000;
 app.listen(config.port, function () {
-  console.log('Server is listening on *:' + config.port);
-})
+  console.log('Server is listening on port:' + config.port);
+});
