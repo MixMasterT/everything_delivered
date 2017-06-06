@@ -4,19 +4,27 @@
    * list - Returns a list of all Orders
    * show - Displays a vendor and its Orders
 */
+const key = require('../config.js').gmapskey;
+const googleMapsClient = require('@google/maps').createClient({key: key});
+const Order = require('../models/order.js');
 
-
-var Order = require('../models/order.js');
-
-exports.post = function(req, res) {
+// initial order placing method
+// need to derive address from location somehow.
+exports.userPlaceOrder = function(req, res) {
+  //example address format: '1600 Amphitheatre Parkway, Mountain View, CA'
+  var newLoc = googleMapsClient.geocode({
+    address: req.body.address
+    }, function(err, response) {
+      if (!err) {
+        console.log(response.json.results);
+      }});
+  console.log(newLoc);
   new Order({
     _uId: req.body._uId,
-    _dId: req.body._dId,
     total: req.body.total,
     items: req.body.items,
     address: req.body.address,
-    loc: req.body.loc,
-    scheduledDeliverTime: req.body.scheduledDeliverTime,
+    loc: newLoc,
   }).save();
 }
 

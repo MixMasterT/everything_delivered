@@ -1,19 +1,25 @@
 var express = require('express');
 var router = express.Router();
 
-//import different controllers
-var orderApi = require('./controllers/orders_api.js');
-var itemsApi = require('./controllers/items_api.js');
-var usersApi = require('./controllers/users_api.js');
+// Import different controllers
+var orderAPI = require('./controllers/orders_api.js');
+var itemsAPI = require('./controllers/items_api.js');
+var usersAPI = require('./controllers/users_api.js');
+
+// Request phone verification
+router.post('/request/', usersAPI.requestPhoneVerification);
+// Verify code from phone
+router.post('/verify/', usersAPI.verifyPhoneToken);
 
 
-router.post('/request/', usersApi.requestPhoneVerification);
-router.post('/.*verify$/', usersApi.verifyPhoneToken);
+// initial order creation by user
+router.post('/checkout', orderAPI.userPlaceOrder);
 
-router.get('/', itemsApi.listAll);
-router.post('/', itemsApi.newItem);
-// router.put('/', itemsApi.updateItem);
-router.get('/:itemId', itemsApi.listOne);
+// get list of all items
+router.get('/', itemsAPI.listAll);
+router.post('/', itemsAPI.newItem);
+// router.put('/', itemsAPI.updateItem);
+router.get('/:itemId', itemsAPI.listOne);
 
 
 module.exports = router;
