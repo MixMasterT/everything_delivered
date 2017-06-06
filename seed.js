@@ -10,11 +10,20 @@ mongoose.connect('mongodb://localhost/test', err => {
 });
 
 const db = mongoose.connection;
-//reset collections
 db.once('open', () => {
-  Vendor.remove({}, (err) => console.log('vendors reset'));
-  Item.remove({}, (err) => console.log('items reset'))
-});
+  Vendor.count({}, (err, num) => {
+    if (num >= 50) {
+      console.log(num);
+      Vendor.remove({}, (err) => console.log('vendors reset', err));
+      Item.remove({}, (err) => console.log('items reset', err))
+      console.log('clearing db...run again to seed')
+    } else if (num === 0) {
+      console.log('seeding...')
+      var vendors = genVendor(50, writeVendors);
+    }
+  })
+})
+//reset collections
 
 
 function genVendor(amt, cb) {
@@ -45,6 +54,7 @@ function genVendor(amt, cb) {
 }
 
 function genItems(amt, vIds, complete) {
+  console.log(vIds);
   var totalItems = [];
   var itemPrefix = `Red Green Blue Yellow Orange Magenta Pink Purple Maroon Black White
   Tan Sandy EggWhite Tortilla Big Huge Small Tiny Medium Itsy Grey Soft 8-Pack 12-Pack 4-Pack
@@ -68,20 +78,21 @@ function genItems(amt, vIds, complete) {
   complete(totalItems);
   return totalItems;
 }
-//declare how many Vendors to generate
-var vendors = genVendor(50, writeVendors);
+
 //callback to create DB instances upon generation
 function writeVendors(vendors) {
   var vendorIds = [];
-  vendors.forEach(v => {
+  vendors.forEach((v, idx) => {
     Vendor.create(v, (err) => {
       if (err) { throw err }
     }).then((obj) => {
       vendorIds.push(obj._id)
+      //generate items once Vendors have been written 
+      if (idx === vendors.length - 1){
+        genItems(vendors.length, vendorIds, writeItems);
+      }
     });
   })
-  itms = genItems(vendors.length, vendorIds, writeItems);
-  generateJSON("seedFile2.json");
 }
 
 //callback to pass to generateItems function

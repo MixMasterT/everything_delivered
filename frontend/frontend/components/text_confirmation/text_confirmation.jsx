@@ -26,6 +26,7 @@ class TextConfirmation extends React.Component {
     return (
         <form className='text-confirmation' onSubmit={this.handleSubmit}>
         <input type='text'
+          placeholder="Phone Number"
           className='text-confirmation'
           onChange={this.handleChange('phone')}
           value={this.state.phone}/>
