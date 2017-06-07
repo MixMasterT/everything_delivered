@@ -13,9 +13,8 @@ export const requestToken = (phoneNumber) => {
 //   return new Promise((resolve, reject) => {
 //     var request = new XMLHttpRequest();
 //     var params = JSON.stringify({ phone: phoneNumber, country_code: "+1" });
-//     console.log(params);
-//     request.open('GET', `${baseUrl}request`);
 //
+//     request.open('GET', `${baseUrl}request`);
 //     request.onreadystatechange = function () {
 //       if (this.readyState === 4) {
 //         if (this.status >= 200 && this.status < 300) {
