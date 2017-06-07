@@ -2,7 +2,11 @@ const baseUrl = 'http://localhost:3000/';
 
 export const requestToken = (phoneNumber) => {
   $.ajax({
+<<<<<<< HEAD
     method: 'GET',
+=======
+    method: 'POST',
+>>>>>>> d130f2b031552d2f1a925cf424ba7ad040bf4acc
     url: '/request',
     data: { phone_number: phoneNumber, country_code: "+1" },
     success: (res) => console.log(res),
